@@ -2,7 +2,7 @@
 
 DSL для создания админского меню.
 
-## Installation
+## Установка
 
 Добавить в Gemfile:
 
@@ -10,7 +10,7 @@ DSL для создания админского меню.
 gem 'admin_menu_builder', git: 'ssh://git@stash.netology-group.ru:7999/gems/admin_menu_builder.git'
 ```
 
-## Usage
+## Использование
 
 По-умолчанию авторайзер берётся из названия ресурса,
 label из локали `ru.activerecord.models.course.other`,
@@ -62,4 +62,16 @@ ul.nav.navbar-nav
                   span.badge = subitem.counter
     - else
       li = link_to item.label, item.path
+```
+
+Меню можно описать в initializer либо в concern, который потом нужно включить в `Admin::BaseController`.
+Нужно учитывать, что код должен подгружаться только один раз при загрузке приложения.
+
+## Кэширование
+
+Ключ кэша может быть, например, таким:
+
+```ruby
+- menu_cache_key = AdminMenuBuilder.counters_for(current_admin).map(&:counter)
+- cache [current_admin.try(:admin_role), menu_cache_key, AdminRole.last]
 ```
