@@ -44,6 +44,4 @@ module AdminMenuBuilder
   def self.counters_for(admin)
     @main_menu.counters_for(admin)
   end
-
-  Menu.include Rails.application.routes.url_helpers
 end

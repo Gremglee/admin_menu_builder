@@ -1,6 +1,6 @@
 ENV['RAILS_ENV'] = 'test'
 
-require File.expand_path('../../test/dummy/config/environment.rb',  __FILE__)
+require File.expand_path('../../spec/dummy/config/environment.rb',  __FILE__)
 
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run

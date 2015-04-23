@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 class Course
+  def self.readable_by?(admin)
+    true
+  end
 end
 
 describe AdminMenuBuilder do
@@ -8,8 +11,6 @@ describe AdminMenuBuilder do
 
   describe 'base DSL' do
     before do
-      allow(Course).to receive(:readable_by?).and_return(true)
-
       AdminMenuBuilder.main_menu do
         menu 'Main menu title' do
           menu :courses

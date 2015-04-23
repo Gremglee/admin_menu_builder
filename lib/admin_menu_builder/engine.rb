@@ -1,5 +1,7 @@
 module AdminMenuBuilder
   class Engine < ::Rails::Engine
-    #isolate_namespace AdminMenuBuilder
+    initializer 'admin_menu_builder.load_routes' do |app|
+      Menu.include app.routes.url_helpers
+    end
   end
 end
