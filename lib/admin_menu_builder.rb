@@ -6,7 +6,6 @@ require 'admin_menu_builder/menu_item'
 module AdminMenuBuilder
   # TODO: Несколько ресурсов для авторайзера (?)
   # TODO: Методы для авторайзера
-  # TODO: namespace для урлов подменю (?)
   # По-умолчанию авторайзер берётся из названия ресурса,
   # label из локали ru.activerecord.models.course.other,
   # а url генерируется в :admin namespace

@@ -30,7 +30,7 @@ module AdminMenuBuilder
     end
 
     def path
-      params[:path].present? ? params[:path] : [:admin, *resource]
+      params[:path].present? ? params[:path] : [*path_namespace, *resource]
     end
 
     def counter
@@ -51,6 +51,14 @@ module AdminMenuBuilder
       end
     end
 
+    def path_namespace
+      if parent.present?
+        parent.path_namespace
+      else
+        params[:path_namespace].present? ? params[:path_namespace] : :admin
+      end
+    end
+
     private
 
     def resource_class
@@ -58,6 +66,10 @@ module AdminMenuBuilder
 
       resource_name = resource.is_a?(Array) ? resource.join('/') : resource.to_s
       resource_name.singularize.camelize.constantize
+    end
+
+    def parent
+      params[:parent_menu_item]
     end
   end
 end

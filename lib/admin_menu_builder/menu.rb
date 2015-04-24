@@ -2,17 +2,18 @@ module AdminMenuBuilder
   class Menu
     attr_reader :items
 
-    def initialize(&block)
+    def initialize(params = {}, &block)
       @items = []
+      @parent_menu_item = params[:parent_menu_item]
       instance_exec(&block)
     end
 
     def add_item(resource, params = {}, &block)
-      menu_item = MenuItem.new(resource, params)
+      menu_item = MenuItem.new(resource, params.merge(parent_menu_item: @parent_menu_item))
       items << menu_item
 
       if block_given?
-        menu_item.submenu = self.class.new(&block)
+        menu_item.submenu = self.class.new(parent_menu_item: menu_item, &block)
       end
     end
 
