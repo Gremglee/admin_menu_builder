@@ -37,6 +37,14 @@ module AdminMenuBuilder
       end
     end
 
+    def resources
+      items.inject([]) do |m, item|
+        m << item.resource
+        m.push(*item.submenu.resources) if item.has_submenu?
+        m
+      end
+    end
+
     protected
 
     def counters

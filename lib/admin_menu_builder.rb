@@ -43,4 +43,9 @@ module AdminMenuBuilder
   def self.counters_for(admin)
     @main_menu.counters_for(admin)
   end
+
+  def self.cache_key(admin)
+    @_resources_cache_key ||= @main_menu.resources.join
+    Digest::SHA1.hexdigest("#{@_resources_cache_key}#{counters_for(admin).join}")
+  end
 end
