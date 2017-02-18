@@ -20,7 +20,7 @@ module AdminMenuBuilder
     alias_method :menu, :add_item
 
     def menu_items_for(admin)
-      return [] if admin.nil?
+      #return [] if admin.nil?
 
       items.inject([]) do |m, item|
         m << item if item.readable_by?(admin)
@@ -29,7 +29,7 @@ module AdminMenuBuilder
     end
 
     def counters_for(admin)
-      return [] if admin.nil?
+      #return [] if admin.nil?
 
       counters.inject([]) do |m, item|
         m << item if item.readable_by?(admin)

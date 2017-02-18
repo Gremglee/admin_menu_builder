@@ -43,6 +43,7 @@ module AdminMenuBuilder
 
     def readable_by?(admin)
       return true if authorizer_resource.nil?
+      return true if admin.nil?
 
       if has_submenu?
         @submenu.items.any? { |item| item.readable_by?(admin) }
